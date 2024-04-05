@@ -6,10 +6,10 @@ using namespace std;
 
 int main()
 {
-	HR::Person person1("John", "Doe");
+	HR::Person person1("Mary", "Lynn");
 	cout << person1 << endl;
 
-	HR::Person person2("Marc", "Gregoire", "Mg");
+	HR::Person person2("Charles", "Jones", "Cj");
 	cout << person2 << endl;
 
 	ofstream outputFile("person.txt");

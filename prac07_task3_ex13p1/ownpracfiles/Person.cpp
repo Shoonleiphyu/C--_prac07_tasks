@@ -19,6 +19,13 @@ Person::Person(std::string firstName, std::string lastName)
     {
     }
 
+     // Stream insertion operator
+    std::ostream& operator<<(std::ostream& os, const HR::Person& person)
+    {
+        os << static_cast<std::string>(person);
+        return os;
+    }
+
 
     const std::string& Person::getFirstName() const
     {
@@ -89,10 +96,5 @@ Person::Person(std::string firstName, std::string lastName)
         return !(*this < otherPerson);
     }
 
-    // Stream insertion operator
-    std::ostream& operator<<(std::ostream& os, const HR::Person& person)
-    {
-        os << static_cast<std::string>(person);
-        return os;
-    }
+   
 }

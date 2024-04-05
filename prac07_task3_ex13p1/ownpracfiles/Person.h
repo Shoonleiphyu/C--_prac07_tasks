@@ -41,8 +41,8 @@ namespace HR
 		bool operator>=(const Person &other) const;
 		bool operator==(const Person &other) const;
 	};
-}
 
-std::ostream &operator<<(std::ostream &os, const HR::Person &person);
+	std::ostream &operator<<(std::ostream &os, const HR::Person &person);
+}
 
 #endif

@@ -8,8 +8,8 @@ int main()
 {
     Database db;
 
-    HR::Person person1("John", "Doe");
-    HR::Person person2("Jane", "Smith");
+    HR::Person person1("Mary", "Lynn");
+    HR::Person person2("Charles", "Jones");
     db.add(person1);
     db.add(person2);
 
