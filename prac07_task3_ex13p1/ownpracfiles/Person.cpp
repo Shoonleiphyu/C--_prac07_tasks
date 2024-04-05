@@ -19,6 +19,7 @@ Person::Person(std::string firstName, std::string lastName)
     {
     }
 
+
     const std::string& Person::getFirstName() const
     {
         return m_firstName;
