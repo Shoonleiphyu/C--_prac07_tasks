@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include "Person.h"
+#include <vector>
 
 class Database
 {
