@@ -14,13 +14,14 @@ namespace HR
 		std::string m_initials;
 
 	public:
-		Person() = default;
+		Person() {m_firstName = ""; m_lastName = ""; m_initials = "";}
+
 
 		Person(std::string firstName, std::string lastName);
 
 		Person(std::string firstName, std::string lastName, std::string initials);
 
-		virtual ~Person() = default;
+		//Person() {m_firstName = ""; m_lastName = ""; m_initials = "";}
 
 		virtual const std::string &getFirstName() const;
 		virtual void setFirstName(std::string firstName);

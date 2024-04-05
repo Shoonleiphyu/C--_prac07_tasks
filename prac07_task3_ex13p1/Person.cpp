@@ -56,9 +56,10 @@ Person::Person(std::string firstName, std::string lastName)
     }
 
     bool Person::operator!=(const Person& otherPerson) const
-    {
-        return (m_firstName != otherPerson.m_firstName || m_lastName != otherPerson.m_lastName);
-    }
+	{
+    	return (m_firstName != otherPerson.m_firstName || m_lastName != otherPerson.m_lastName);
+	}
+
 
     bool Person::operator<(const Person& other) const
     {
