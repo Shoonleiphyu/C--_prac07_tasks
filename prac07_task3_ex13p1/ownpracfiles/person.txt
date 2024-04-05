@@ -1,2 +1,0 @@
-Name(Mary, Lynn, ML)
-Name(Charles, Jones, Cj)
