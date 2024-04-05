@@ -1,75 +1,60 @@
-module person_database;
+#include <string>
+#include <vector>
+#include "Person.h"
+#include <fstream>
+#include <iostream>
+#include "Database.h"
 
-import <iostream>;
-import <fstream>;
-import <string>;
-import <iomanip>;
-import <sstream>;
-
-using namespace std;
-
-void Database::add(Person person)
+void Database::add(const HR::Person &person)
 {
-	m_persons.push_back(move(person));
+    m_persons.push_back(person);
+}
+
+void Database::save(const std::string &filename)
+{
+    std::ofstream file(filename, std::ios::trunc);
+    if (file.is_open())
+    {
+        for (const HR::Person &person : m_persons)
+        {
+            file << person.getFirstName() << " " << person.getLastName() << "\n";
+        }
+        file.close();
+    }
+    else
+    {
+        std::cerr << "Could not open file for writing." << std::endl;
+    }
+}
+
+void Database::load(const std::string &filename)
+{
+    std::ifstream file(filename);
+    if (file.is_open())
+    {
+        clear();
+        std::string firstName, lastName;
+        while (file >> firstName >> lastName)
+        {
+            add(HR::Person(firstName, lastName));
+        }
+        file.close();
+    }
+    else
+    {
+        std::cerr << "Could not open file for reading." << std::endl;
+    }
 }
 
 void Database::clear()
 {
-	m_persons.clear();
+    m_persons.clear();
 }
 
-void Database::save(string_view filename) const
+void Database::outputAll() const
 {
-	ofstream outFile{ filename.data(), ios_base::trunc };
-	if (!outFile) {
-		cerr << "Cannot open file: " << filename << endl;
-		return;
-	}
-
-	for (const auto& person : m_persons) {
-		// We need to support spaces in names.
-		// So, to be able to read back names later in load(),
-		// we simply quote all parts of the name.
-		outFile << quoted(person.getFirstName())
-			<< quoted(person.getLastName())
-			<< quoted(person.getInitials()) << endl;
-	}
-}
-
-void Database::load(string_view filename)
-{
-	ifstream inFile{ filename.data() };
-	if (!inFile) {
-		cerr << "Cannot open file: " << filename << endl;
-		return;
-	}
-
-	while (inFile) {
-		// Read line by line, so we can skip empty lines.
-		// The last line in the file is empty, for example.
-		string line;
-		getline(inFile, line);
-		if (line.empty()) { // Skip empty lines
-			continue;
-		}
-
-		// Make a string stream and parse it.
-		istringstream inLine{ line };
-		string firstName, lastName, initials;
-		inLine >> quoted(firstName) >> quoted(lastName) >> quoted(initials);
-		if (inLine.bad()) {
-			cerr << "Error reading person. Ignoring." << endl;
-			continue;
-		}
-
-		// Create a person and add it to the database.
-		m_persons.push_back(Person{ move(firstName), move(lastName), move(initials) });
-	}
-}
-
-void Database::outputAll(ostream& output) const
-{
-	for (const auto& person : m_persons) {
-		person.output(output);
-	}
+    for (const HR::Person &person : m_persons)
+    {
+        std::cout << person << std::endl;
+    }
 }

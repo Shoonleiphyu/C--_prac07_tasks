@@ -1,32 +1,28 @@
-import person;
-import person_database;
-import <iostream>;
+#include <iostream>
+#include <string>
+#include "Person.h"
+#include "Database.h"
 
 using namespace std;
-
 int main()
 {
-	// Fill a database.
-	Database db;
-	db.add(Person{ "John", "Doe" });
-	db.add(Person{ "Marc", "Gregoire", "Mg" });
-	db.add(Person{ "Peter", "Van Weert", "PVW" });
+    Database db;
 
-	// Output all persons in the database to standard output.
-	cout << "Initial database contents:" << endl;
-	db.outputAll(cout);
+    HR::Person person1("John", "Doe");
+    HR::Person person2("Jane", "Smith");
+    db.add(person1);
+    db.add(person2);
 
-	// Save the database to a file.
-	db.save("person.db");
+    cout << "All persons in the vector after adding:" << endl;
+    db.outputAll();
 
-	// Clear the database.
-	db.clear();
-	cout << "\nDatabase contents after clearing:" << endl;
-	db.outputAll(cout);
-	
-	// Load database from file.
-	cout << "\nLoading database from file..." << endl;
-	db.load("person.db");
-	cout << "\nDatabase contents after loading from file:" << endl;
-	db.outputAll(cout);
+    db.save("database.txt");
+
+    db.clear();
+
+    cout << "\nAll persons in the database after clearing: " << endl;
+    db.load("database.txt");
+    db.outputAll();
+
+    return 0;
 }

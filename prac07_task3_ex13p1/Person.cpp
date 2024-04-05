@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Person.h"
 #include <sstream>
 
@@ -55,21 +56,39 @@ Person::Person(std::string firstName, std::string lastName)
         return ss.str();
     }
 
-    bool Person::operator!=(const Person& otherPerson) const
-	{
-    	return (m_firstName != otherPerson.m_firstName || m_lastName != otherPerson.m_lastName);
-	}
-
-
-    bool Person::operator<(const Person& other) const
+     bool Person::operator==(const Person& otherPerson) const
     {
-        if (m_lastName != other.m_lastName)
-            return m_lastName < other.m_lastName;
-        return m_firstName < other.m_firstName;
+        return (m_firstName == otherPerson.m_firstName && m_lastName == otherPerson.m_lastName);
     }
 
-    // Implement other comparison operators...
+    bool Person::operator!=(const Person& otherPerson) const
+    {
+        return !(*this == otherPerson);
+    }
 
+    bool Person::operator<(const Person& otherPerson) const
+    {
+        if (m_lastName != otherPerson.m_lastName)
+            return m_lastName < otherPerson.m_lastName;
+        return m_firstName < otherPerson.m_firstName;
+    }
+
+    bool Person::operator>(const Person& otherPerson) const
+    {
+        return otherPerson < *this;
+    }
+
+    bool Person::operator<=(const Person& otherPerson) const
+    {
+        return !(otherPerson < *this);
+    }
+
+    bool Person::operator>=(const Person& otherPerson) const
+    {
+        return !(*this < otherPerson);
+    }
+
+    // Stream insertion operator
     std::ostream& operator<<(std::ostream& os, const HR::Person& person)
     {
         os << static_cast<std::string>(person);
