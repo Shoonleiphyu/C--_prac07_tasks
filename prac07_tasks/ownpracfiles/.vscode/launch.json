@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/shoonleiphyu/Desktop/JCU/4thsem/2406P3/prac/projects/prac7/prac07_tasks/prac07_tasks/ownpracfiles",
+      "program": "/Users/shoonleiphyu/Desktop/JCU/4thsem/2406P3/prac/projects/prac7/prac07_tasks/prac07_tasks/ownpracfiles/build/Debug/outDebug"
+    }
+  ]
+}
